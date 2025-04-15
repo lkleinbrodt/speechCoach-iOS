@@ -1,6 +1,6 @@
 android/
 ios/
-
+*.ipa
 # dependencies
 node_modules/
 .pnp
