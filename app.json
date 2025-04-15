@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "speechCoach",
+    "slug": "speechCoach",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/images/icon.png",
+    "scheme": "speechCoach",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.landonkleinbrodt.speechcoach",
+      "merchantId": "merchant.com.landonkleinbrodt.speechcoach",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "This app uses Face ID to secure your payment information",
+        "LSApplicationQueriesSchemes": [
+          "itms-apps"
+        ]
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "entitlements": {
+        "com.apple.developer.in-app-payments": [
+          "merchant.com.landonkleinbrodt.speechcoach"
+        ]
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./app/assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      "expo-av",
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.landonkleinbrodt.speechcoach",
+          "enableGooglePay": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "STRIPE_PUBLISHABLE_KEY": ""
+    }
+  }
+}

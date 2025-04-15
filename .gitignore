@@ -1,0 +1,65 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+.jest/
+
+# expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# environment variables
+.env
+.env.*
+!.env.example
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.idea
+.vscode
+
+# macOS
+.DS_Store
+*.pem
+
+# typescript
+*.tsbuildinfo
+
+# metro
+.metro-health-check*
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# iOS
+ios/build/
+ios/Pods/
+ios/Podfile.lock
+
+# Android
+android/app/build/
+android/build/
+android/local.properties
+android/.gradle/
+android/captures/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+
+# Cursor
+.cursor/
