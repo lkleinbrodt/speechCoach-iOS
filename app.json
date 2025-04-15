@@ -14,6 +14,7 @@
       "merchantId": "merchant.com.landonkleinbrodt.speechcoach",
       "infoPlist": {
         "NSFaceIDUsageDescription": "This app uses Face ID to secure your payment information",
+        "NSCameraUsageDescription": "This app needs camera access to scan credit cards for payment processing",
         "LSApplicationQueriesSchemes": [
           "itms-apps"
         ]
