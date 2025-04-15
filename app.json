@@ -43,13 +43,34 @@
           "merchantIdentifier": "merchant.com.landonkleinbrodt.speechcoach",
           "enableGooglePay": false
         }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1E293B",
+          "image": "./app/assets/images/icon_no_background.png",
+          "imageWidth": 200
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
-      "STRIPE_PUBLISHABLE_KEY": ""
+      "STRIPE_PUBLISHABLE_KEY": "",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b827aaa1-f70c-4f35-8e1a-6a8667878808"
+      }
+    },
+    "android": {
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ],
+      "package": "com.landonkleinbrodt.speechcoach"
     }
   }
 }

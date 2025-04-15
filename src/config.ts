@@ -4,7 +4,7 @@ const API_CONFIG = {
     timeout: 30000,
   },
   production: {
-    baseURL: 'https://www.coyote-ai.com/api',
+    baseURL: 'https://www.landonkleinbrodt.com/api',
     timeout: 30000,
   },
 };

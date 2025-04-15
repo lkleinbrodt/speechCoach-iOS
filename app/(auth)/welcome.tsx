@@ -34,7 +34,7 @@ export default function WelcomeScreen() {
 
       <View style={styles.content}>
         <Image
-          source={require('@/assets/images/logo.png')}
+          source={require('@/assets/images/icon_no_background.png')}
           style={styles.logo}
           resizeMode="contain"
         />
