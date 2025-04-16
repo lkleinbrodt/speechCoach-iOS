@@ -78,10 +78,7 @@ export default function RecordScreen() {
           if (status.canRecord === false) {
             await recordingRef.current.stopAndUnloadAsync();
           }
-        } catch (error) {
-          // Ignore errors when checking status or unloading
-          console.log('Recording already unloaded');
-        }
+        } catch (error) {}
         recordingRef.current = null;
       }
 
@@ -149,7 +146,6 @@ export default function RecordScreen() {
 
       // Request permissions
       if (permissionResponse?.status !== 'granted') {
-        console.log('Requesting permission..');
         const permission = await requestPermission();
         if (permission.status !== 'granted') {
           throw new Error('Microphone permission not granted');
@@ -163,13 +159,11 @@ export default function RecordScreen() {
         staysActiveInBackground: true,
         shouldDuckAndroid: true,
       });
-      console.log('Audio mode set');
 
       // Create new recording
       const { recording } = await Audio.Recording.createAsync(
         Audio.RecordingOptionsPresets.HIGH_QUALITY
       );
-      console.log('Recording created');
       recordingRef.current = recording;
       startTimeRef.current = Date.now();
       setIsRecording(true);

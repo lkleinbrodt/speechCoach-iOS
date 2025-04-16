@@ -87,15 +87,13 @@ class APIClient {
 
     // Response interceptor
     this.api.addResponseTransform((response: ApiResponse<any>) => {
-      // Log the raw response for debugging
-      console.log('API Response:', {
-        url: response.config?.url,
-        status: response.status,
-        problem: response.problem,
-        data: response.data,
-      });
-
       if (!response.ok) {
+        console.log('Error API Response:', {
+          url: response.config?.url,
+          status: response.status,
+          problem: response.problem,
+          data: response.data,
+        });
         const error: APIError = {
           code: response.problem || 'UNKNOWN_ERROR',
           message: response.data?.message || 'An unexpected error occurred',
@@ -157,7 +155,6 @@ class APIClient {
         headers,
       });
       const data = await response.json();
-      console.log('data', data);
       return {
         ok: response.ok,
         data: response.ok ? data : undefined,

@@ -1,6 +1,6 @@
 const API_CONFIG = {
   development: {
-    baseURL: 'http://127.0.0.1:5002/api',
+    baseURL: 'http://10.0.0.2:5002/api',
     timeout: 30000,
   },
   production: {
