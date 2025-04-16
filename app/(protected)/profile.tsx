@@ -22,7 +22,7 @@ type ActionItem = {
 };
 
 export default function ProfileScreen() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, loading } = useAuth();
 
   const handleDeleteAccount = async () => {
     Alert.alert(
@@ -84,8 +84,12 @@ export default function ProfileScreen() {
         <View style={styles.avatarContainer}>
           <User size={64} color="#007AFF" />
         </View>
-        <Text style={styles.name}>{user?.name}</Text>
-        <Text style={styles.email}>{user?.email}</Text>
+        <Text style={styles.name}>
+          {loading ? 'Loading...' : user?.name || 'No name available'}
+        </Text>
+        <Text style={styles.email}>
+          {loading ? 'Loading...' : user?.email || 'No email available'}
+        </Text>
       </View>
 
       <View style={styles.section}>

@@ -38,7 +38,7 @@ type SettingSection = {
 };
 
 export default function SettingsScreen() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, loading } = useAuth();
   const { balance } = useBalance();
 
   const handleLogout = async () => {
@@ -61,8 +61,10 @@ export default function SettingsScreen() {
       items: [
         {
           icon: <User size={24} color="#007AFF" />,
-          title: user?.name || 'Loading...',
-          subtitle: user?.email,
+          title: loading ? 'Loading...' : user?.name || 'No name available',
+          subtitle: loading
+            ? 'Loading...'
+            : user?.email || 'No email available',
           type: 'link',
           onPress: () => router.push('/(protected)/profile'),
         },

@@ -32,7 +32,7 @@ export default function ProgressScreen() {
 
   useEffect(() => {
     loadStats();
-  }, []);
+  }, [recordings]);
 
   const loadStats = async () => {
     try {
