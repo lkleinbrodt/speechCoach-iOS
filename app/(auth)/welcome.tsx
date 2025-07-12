@@ -1,4 +1,5 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as WebBrowser from 'expo-web-browser';
 
 import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 
@@ -21,6 +22,18 @@ export default function WelcomeScreen() {
     } catch (error) {
       // Error is handled in AuthContext
     }
+  };
+
+  const openTermsOfService = () => {
+    WebBrowser.openBrowserAsync(
+      'https://github.com/yourusername/speech_ios/blob/main/docs/terms-of-service.md'
+    );
+  };
+
+  const openPrivacyPolicy = () => {
+    WebBrowser.openBrowserAsync(
+      'https://github.com/yourusername/speech_ios/blob/main/docs/privacy-policy.md'
+    );
   };
 
   return (
@@ -61,11 +74,11 @@ export default function WelcomeScreen() {
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             By continuing, you agree to our{' '}
-            <Text style={styles.link} onPress={() => {}}>
+            <Text style={styles.link} onPress={openTermsOfService}>
               Terms of Service
             </Text>{' '}
             and{' '}
-            <Text style={styles.link} onPress={() => {}}>
+            <Text style={styles.link} onPress={openPrivacyPolicy}>
               Privacy Policy
             </Text>
           </Text>

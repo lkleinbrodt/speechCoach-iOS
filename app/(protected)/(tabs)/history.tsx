@@ -73,6 +73,25 @@ export default function HistoryScreen() {
     </TouchableOpacity>
   );
 
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>History</Text>
+          <Text style={styles.subtitle}>
+            Review your past recordings and feedback
+          </Text>
+        </View>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity style={styles.retryButton} onPress={loadRecordings}>
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   if (!loading && (!recordings || recordings.length === 0)) {
     return (
       <View style={styles.container}>
@@ -193,5 +212,30 @@ const styles = StyleSheet.create({
     color: '#666666',
     fontSize: 14,
     fontFamily: 'Inter_400Regular',
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    fontSize: 17,
+    color: '#FF3B30',
+    textAlign: 'center',
+    fontFamily: 'Inter_500Medium',
+    marginBottom: 20,
+  },
+  retryButton: {
+    backgroundColor: '#007AFF',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: 'Inter_600SemiBold',
   },
 });

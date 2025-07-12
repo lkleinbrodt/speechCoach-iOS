@@ -60,14 +60,17 @@ function StripeUrlHandler({ children }: { children: React.ReactNode }) {
 
 export default function RootLayout() {
   const isFrameworkReady = useFrameworkReady();
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
     Inter_600SemiBold,
     Inter_700Bold,
   });
 
-  if (!isFrameworkReady || !fontsLoaded) {
+  // Consolidate readiness checks
+  const appIsReady = isFrameworkReady && (fontsLoaded || fontError);
+
+  if (!appIsReady) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Loading...</Text>

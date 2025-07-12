@@ -243,13 +243,22 @@ export default function ResultsScreen() {
         <View style={[styles.section, styles.lastSection]}>
           <Text style={styles.sectionTitle}>Suggestions</Text>
           {analysis?.feedback ? (
-            analysis.feedback.split('","').map((suggestion, index) => (
-              <View key={index} style={styles.suggestionItem}>
-                <Text style={styles.suggestion}>
-                  • {suggestion.replace(/[{"}]/g, '')}
-                </Text>
-              </View>
-            ))
+            Array.isArray(analysis.feedback) ? (
+              analysis.feedback.map((suggestion, index) => (
+                <View key={index} style={styles.suggestionItem}>
+                  <Text style={styles.suggestion}>• {suggestion}</Text>
+                </View>
+              ))
+            ) : (
+              // Fallback for legacy string format
+              analysis.feedback.split('","').map((suggestion, index) => (
+                <View key={index} style={styles.suggestionItem}>
+                  <Text style={styles.suggestion}>
+                    • {suggestion.replace(/[{"}]/g, '')}
+                  </Text>
+                </View>
+              ))
+            )
           ) : (
             <Text style={styles.suggestion}>No suggestions available</Text>
           )}

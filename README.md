@@ -1,163 +1,220 @@
 # Speech Coach AI
 
-Speech Coach AI is a mobile application designed to help users improve their public speaking and presentation skills through AI-powered feedback and analysis. The app provides real-time recording capabilities and detailed analysis of speech patterns, delivery, and content.
+A React Native/Expo iOS application that provides AI-powered speech analysis and feedback. Users can record their speech, receive detailed analysis including clarity scores, tone analysis, and improvement suggestions.
 
 ## Features
 
-- **Speech Recording**: High-quality audio recording with a user-friendly interface
-- **AI Analysis**: Real-time analysis of speech content, delivery, and patterns
-- **Performance History**: Track your progress and review past recordings
-- **Detailed Feedback**: Get comprehensive feedback on your presentations
-- **Progress Tracking**: Monitor your improvement over time with detailed metrics
-- **User-Friendly Interface**: Clean, modern UI with intuitive controls
-- **Payment Integration**: Secure in-app purchases with Apple Pay support
-- **Clarity Scoring**: Get detailed clarity scores and improvement suggestions
-- **Content Structure Analysis**: Evaluation of speech organization and coherence
-- **Tone Analysis**: Detailed analysis of speech tone and emotional delivery
+- **AI-Powered Speech Analysis**: Get detailed feedback on clarity, pace, tone, and content structure
+- **Secure Authentication**: Sign in with Apple for seamless user experience
+- **Credit-Based System**: Pay only for what you use with transparent pricing
+- **Recording History**: Track your progress over time with detailed history
+- **Real-time Feedback**: Instant analysis with comprehensive suggestions for improvement
 
-## Technical Overview
+## Tech Stack
 
-### Tech Stack
+### Frontend
 
-- **Framework**: React Native with Expo
-- **Navigation**: Expo Router
-- **UI Components**: Custom components with React Native core components
-- **Styling**: React Native StyleSheet with custom theming
-- **Audio Processing**: Expo AV for recording and playback
-- **AI Integration**: OpenAI API for speech analysis
-- **Storage**: AsyncStorage for local data persistence
-- **State Management**: React hooks for local state management
-- **Payment Processing**: Stripe integration with Apple Pay support
-- **Authentication**: Secure user authentication with JWT tokens
+- **React Native/Expo**: Cross-platform mobile development
+- **TypeScript**: Type-safe development
+- **Expo Router**: File-based navigation
+- **Context API**: State management
+- **Stripe**: Payment processing
+- **Apple Sign In**: Authentication
 
-### Key Dependencies
+### Backend
 
-- `expo`: ~52.0.46
-- `expo-av`: ~15.0.2
-- `expo-router`: ~4.0.20
-- `react-native`: ^0.76.9
-- `openai`: ^4.28.0
-- `@react-native-async-storage/async-storage`: 1.23.1
-- `@stripe/stripe-react-native`: ^0.38.6
-- `expo-apple-authentication`: ~7.1.3
-- `expo-secure-store`: ~14.0.1
-- `react-native-reanimated`: ~3.16.1
-- `expo-constants`: ~17.0.8
-- `expo-linking`: ^7.0.5
-
-### Architecture
-
-The app follows a tab-based navigation structure with the following main sections:
-
-1. **Recording Screen (index.tsx)**
-
-   - Main recording interface
-   - Real-time audio capture
-   - Integration with AI analysis
-   - Balance checking for analysis costs
-
-2. **History Screen (history.tsx)**
-
-   - List of past recordings
-   - Detailed view of previous analyses
-   - Performance metrics
-   - Pull-to-refresh functionality
-
-3. **Progress Screen (progress.tsx)**
-
-   - Performance tracking over time
-   - Statistical analysis
-   - Improvement metrics
-   - Visual progress indicators
-
-4. **Settings Screen (settings.tsx)**
-
-   - App configuration
-   - User preferences
-   - Audio settings
-   - Payment management
-
-5. **Results Screen (results/[id].tsx)**
-   - Detailed analysis view
-   - Clarity scores
-   - Content structure evaluation
-   - Tone analysis
-   - Improvement suggestions
-
-### Data Flow
-
-1. User records speech through the main interface
-2. Audio is processed and sent to OpenAI API
-3. Analysis results are stored locally
-4. Historical data is used for progress tracking
-5. UI updates reflect the latest analysis and statistics
-6. Payment processing for analysis credits
+- **Flask**: Python web framework
+- **SQLAlchemy**: Database ORM
+- **PostgreSQL**: Database
+- **OpenAI API**: Speech transcription and analysis
+- **JWT**: Authentication tokens
 
 ## Getting Started
 
-1. Install dependencies:
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Expo CLI
+- Python 3.8+
+- PostgreSQL
+- Apple Developer Account (for iOS deployment)
+
+### Frontend Setup
+
+1. **Install dependencies**:
 
    ```bash
+   cd speech_ios
    npm install
    ```
 
-2. Set up environment variables:
-   Create a `.env` file with:
+2. **Environment variables**:
+   Create a `.env` file in the root directory:
 
-   ```
+   ```env
+   EXPO_PUBLIC_API_URL=your_backend_url
    EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_key
-   OPENAI_API_KEY=your_api_key
    ```
 
-3. Start the development server:
+3. **Start development server**:
 
    ```bash
    npm run dev
    ```
 
-4. Run on iOS simulator or device:
+4. **Run on iOS**:
    ```bash
    npm run ios
    ```
 
-## Environment Setup
+### Backend Setup
 
-Required environment variables:
+1. **Install dependencies**:
 
-- `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Stripe publishable key for payments
-- `OPENAI_API_KEY`: OpenAI API key for speech analysis
+   ```bash
+   cd ../backend
+   pip install -r requirements.txt
+   ```
 
-## Development Guidelines
+2. **Environment variables**:
+   Create a `.env` file:
 
-- Follow the existing component structure
-- Maintain consistent styling using the StyleSheet definitions
-- Use the provided UI components for consistency
-- Follow TypeScript typing conventions
-- Test thoroughly on iOS platform
-- Ensure proper error handling for payment processing
-- Follow secure coding practices for handling sensitive data
+   ```env
+   DATABASE_URL=postgresql://user:password@localhost/speech_coach
+   OPENAI_API_KEY=your_openai_key
+   STRIPE_SECRET_KEY=your_stripe_secret
+   JWT_SECRET_KEY=your_jwt_secret
+   ENV=development
+   ```
 
-## Build and Deployment
+3. **Database setup**:
 
-The app uses EAS (Expo Application Services) for building and deployment:
+   ```bash
+   flask db upgrade
+   ```
 
-```json
-{
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {
-      "autoIncrement": true
-    }
-  }
-}
+4. **Start server**:
+   ```bash
+   python app.py
+   ```
+
+## Project Structure
+
 ```
+speech_ios/
+├── app/                    # Expo Router pages
+│   ├── (auth)/            # Authentication screens
+│   ├── (protected)/       # Protected app screens
+│   └── components/        # Shared components
+├── src/
+│   ├── api/              # API client functions
+│   ├── auth/             # Authentication context
+│   ├── contexts/         # React contexts
+│   ├── hooks/            # Custom hooks
+│   ├── types/            # TypeScript types
+│   └── utils/            # Utility functions
+├── docs/                 # Legal documents
+└── assets/              # Images and static files
+```
+
+## Key Features Implementation
+
+### 1. Database Transaction Integrity
+
+The backend uses nested transactions to ensure all operations (transcription, moderation, analysis, billing) succeed or fail together, preventing users from being charged for incomplete analyses.
+
+### 2. Robust JSON Parsing
+
+OpenAI API responses use `response_format={"type": "json_object"}` to ensure reliable JSON parsing and eliminate brittle string manipulation.
+
+### 3. Error Handling
+
+Comprehensive error handling throughout the app with user-friendly error messages and retry functionality.
+
+### 4. Legal Compliance
+
+Complete Terms of Service and Privacy Policy documents linked from the welcome screen, required for App Store approval.
+
+## API Endpoints
+
+### Authentication
+
+- `POST /speech/auth/apple/signin` - Apple Sign In
+- `GET /speech/me` - Get current user profile
+- `POST /speech/signout` - Sign out
+
+### Recordings
+
+- `POST /speech/analyze` - Analyze speech recording
+- `GET /speech/recordings` - Get user recordings
+- `GET /speech/recordings/<id>` - Get specific recording
+- `DELETE /speech/recordings/<id>` - Delete recording
+
+### Billing
+
+- `GET /balance` - Get user balance
+- `POST /balance/add-funds` - Add funds to account
+
+## Deployment
+
+### Frontend (iOS)
+
+1. **EAS Build**:
+
+   ```bash
+   eas build --platform ios
+   ```
+
+2. **App Store Submission**:
+   ```bash
+   eas submit --platform ios
+   ```
+
+### Backend
+
+1. **Heroku Deployment**:
+
+   ```bash
+   git push heroku main
+   ```
+
+2. **Environment Variables**: Set all required environment variables in your hosting platform.
+
+## Testing
+
+### Frontend Tests
+
+```bash
+npm test
+```
+
+### Backend Tests
+
+```bash
+python -m pytest tests/
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
 ## License
 
-This project is proprietary and confidential. All rights reserved.
+This project is proprietary software. All rights reserved.
+
+## Support
+
+For support, email support@speechcoach.ai
+
+## Roadmap
+
+- [ ] Audio playback functionality
+- [ ] Advanced analytics dashboard
+- [ ] Speech coaching exercises
+- [ ] Multi-language support
+- [ ] Android version
+- [ ] Web dashboard
